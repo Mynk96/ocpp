@@ -195,7 +195,7 @@ class ChargePoint:
             )
 
         try:
-            response = handler(**snake_case_payload)
+            response = handler(message_type=msg.message_type_id, uuid_request=msg.unique_id, **snake_case_payload)
             if inspect.isawaitable(response):
                 response = await response
         except Exception as e:
