@@ -262,7 +262,7 @@ class ChargePoint:
         camel_case_payload = snake_to_camel_case(asdict(payload))
 
         unique_id = (
-            unique_id if unique_id is not None else str(self._unique_id_generator())
+            str(unique_id) if unique_id is not None else str(self._unique_id_generator())
         )
 
         call = Call(
