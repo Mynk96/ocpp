@@ -139,6 +139,7 @@ class ChargePoint:
         """
         try:
             msg = unpack(raw_msg)
+            LOGGER.info("'%s' raw message ", msg)
         except OCPPError as e:
             LOGGER.exception(
                 "Unable to parse message: '%s', it doesn't seem "
@@ -157,6 +158,7 @@ class ChargePoint:
                 await self._send(response)
 
         elif msg.message_type_id in [MessageType.CallResult, MessageType.CallError]:
+            LOGGER.info("'%s' queue message ", msg)
             self._response_queue.put_nowait(msg)
 
     async def _handle_call(self, msg):
